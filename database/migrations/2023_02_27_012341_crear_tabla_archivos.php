@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('archivos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('model_id');
-            $table->string('model_type', 150);
-            $table->string('ruta', 150);
+            $table->string('model_type', '150');
+            $table->string('ruta', '150');
             $table->string('extencion', '10');
             $table->integer('peso');
             $table->boolean('local')->default();

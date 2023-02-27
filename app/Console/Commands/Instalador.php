@@ -33,7 +33,7 @@ class Instalador extends Command
 
             $rol = $this->crearRolSU();
             $usuario = $this->crearUsuarioSU();
-            $usuario = Usuario::first();
+            // $usuario = Usuario::find(1);
             $usuario->roles()->attach($rol);
             $this->line('El rol y usuario SU se instalaron correctamente');
         }
@@ -56,15 +56,15 @@ class Instalador extends Command
     private function crearRolSU()
     {
         $rol = "Super Administrador";
-        Rol::create([
+        return Rol::create([
             'nombre' => $rol,
             'slug' => Str::slug($rol, '_')
         ]);
     }
     private function crearUsuarioSU()
     {
-        Usuario::create([
-            'nombre' => 'elpapimaspapi',
+        return Usuario::create([
+            'nombre' => 'ares',
             'email' => 'erwil@erwil.com',
             'password' => Hash::make('123456'),
             'estado' => 1
