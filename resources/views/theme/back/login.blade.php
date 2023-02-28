@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset("assets/back/images/favicon.png")}}">
     <title>@yield("titulo", "Login") - Blog</title>
     <!-- Custom CSS -->
-    <link href="{{asset("assets/back/css/style.min.css")}}" rel="stylesheet">
+    <link href="{{asset("assets/back/css/style1.min.css")}}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -123,10 +123,10 @@
     <!-- ============================================================== -->
     <!-- All Required js -->
     <!-- ============================================================== -->
-    <script src="{{asset("assets/back/libs/jquery/dist/jquery.min.js")}}"></script>
+    <script src="{{asset("assets/back/libs/jquery/dist/jquery1.min.js")}}"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{asset("assets/back/libs/popper.js/dist/umd/popper.min.js")}}"></script>
-    <script src="{{asset("assets/back/libs/bootstrap/dist/js/bootstrap.min.js")}}"></script>
+    <script src="{{asset("assets/back/libs/popper.js/dist/umd/popper1.min.js")}}"></script>
+    <script src="{{asset("assets/back/libs/bootstrap/dist/js/bootstrap1.min.js")}}"></script>
     <!-- ============================================================== -->
     <!-- This page plugin js -->
     <!-- ============================================================== -->

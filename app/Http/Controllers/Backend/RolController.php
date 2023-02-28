@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Models\Rol;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class RolController extends Controller
 {
