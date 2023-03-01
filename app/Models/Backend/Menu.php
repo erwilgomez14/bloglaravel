@@ -40,8 +40,21 @@ class Menu extends Model
         $hijos = [];
         foreach ($padres as $line2) {
             if ($line['id'] = $line2['menus_id']) {
-                $hijos = array_merge($hijos, [array_merge($line2, ['submenu' => $this->getHijos])])
+                $hijos = array_merge($hijos, [array_merge($line2, ['submenu' => $this->getHijos($padres, $line)])]);
             }
         }
+    }
+
+    public static function getMenu($front = false) {
+        $menus = new Menu();
+        $padres = $menus->getMenuPadres($front);
+        $menuAll = [];
+        foreach ($padres as $line) {
+            if($line['menus_id'] != null)
+                break;
+            $item = [array_merge($line, ['submenu'=> $menus->getMenuHijos($padres, $line)])];
+            $menuAll = array_merge($menuAll, $item);
+        }
+        return $menuAll; 
     }
 }

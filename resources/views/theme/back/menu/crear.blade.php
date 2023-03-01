@@ -5,7 +5,7 @@
 @endsection
 
 @section('scripts')
-    <script src="{{asset("assets/back/js/pages/scripts/menu/crear.js")}}" type="text/javascripts"></script>
+    <script src="{{asset('assets/back/js/pages/scripts/menu/crear.js')}}" type="text/javascripts"></script>
 @endsection
 
 @section('contenido')

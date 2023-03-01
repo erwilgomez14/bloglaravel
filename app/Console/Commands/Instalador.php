@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Rol;
+use App\Models\Backend\Rol;
 use App\Models\Usuario;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;

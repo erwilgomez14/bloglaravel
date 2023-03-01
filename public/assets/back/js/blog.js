@@ -1,8 +1,8 @@
 var APP = function() {
-
+    
     return
     {
-        validacionGeneral: function( id, reglas, mensajes) {
+        validacionGeneral: function $( id, reglas, mensajes) {
             const formulario = $('#', + id);
             formulario.validate({
                 rules: reglas,
