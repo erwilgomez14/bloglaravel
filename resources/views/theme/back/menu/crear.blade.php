@@ -1,7 +1,7 @@
 @extends('theme.back.app')
 
 @section('titulo')
-    Sistema Menus
+    Crear Menus
 @endsection
 
 @section('scripts')
@@ -10,6 +10,7 @@
 
 @section('contenido')
     <div class="row">
+        @include('includes.alertas')
         <div class="col-md-12">
             <div class="card">
                 <div class="card">

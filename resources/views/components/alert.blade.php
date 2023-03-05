@@ -3,13 +3,8 @@
     <h4 class="alert-heading">Blog</h4>
 
     <p>
-        @if (is_object($mensaje))
-            <ul>
-                @foreach ($mensaje->all() as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-            </ul>
-        @else
+        @if (session($mensaje))
+        
             {{$mensaje}}
         @endif
     </p>

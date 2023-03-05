@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Backend;
 
+use App\Rules\validacionCampoUrl;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ValidacionMenu extends FormRequest
@@ -23,8 +24,8 @@ class ValidacionMenu extends FormRequest
     {
         return [
             //
-            'nombre' =>  'required|max:50',
-            'url' =>  'required|max:100',
+            'nombre' =>  'required|max:50| unique:menus,nombre',
+            'url' =>  'required|max:100| unique:menus,url', 
             'icono' =>  'nullable|max:50' 
         ];
     }

@@ -18,6 +18,9 @@ use App\Http\Controllers\Backend\MenuController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/nestable', function () {
+    return view('nestable.nestable');
+});
 Route::get('mi-cuenta', [MiCuentaController::class, 'index'])->middleware('auth')->name('mi-cuenta');
 
 Route::group(['prefix'=>'admin-backend', 'middleware'=>['auth','superadministrador']], function (){

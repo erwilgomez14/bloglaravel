@@ -1,5 +1,4 @@
 var APP = function() {
-    
     return
     {
         validacionGeneral: function $( id, reglas, mensajes) {
@@ -17,7 +16,7 @@ var APP = function() {
                 unhighlight: function (element) { //highlight error inputs
                     $(element).removeClass('is-invalid');
                 },
-                succes: function (element) { //highlight error inputs
+                success: function (element) { //highlight error inputs
                     $(element).removeClass('is-invalid');
                 },
                 errorPlacement: function (error, element) {
@@ -32,13 +31,11 @@ var APP = function() {
                 invalidHandler: function (event, validator) {
 
                 },
-                invalidHandler: function (event, validator) {
-                    return true;
+                submitHandler: function (form) {
+                    
                 },
 
             });
         }
-    };
-
-
+    }
 }();

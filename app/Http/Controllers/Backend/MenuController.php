@@ -35,15 +35,16 @@ class MenuController extends Controller
         $validado = $request->validated();
         // dd($validado);
         Menu::create($validado);
-        return redirect()->route('menu.crear')->with('mensaje', 'Menu creado satisfactoriamente');
+        return redirect()->route('menu')->with('mensaje', 'Menu creado satisfactoriamente');
     }
 
     /**
      * Display the specified resource.
      */
-    public function editar(string $id)
+    public function editar( $id)
     {
-        //
+        $data = Menu::findOrFail($id);
+        return view('theme.back.menu.editar', compact('data'));
     }
 
     /**
@@ -57,16 +58,28 @@ class MenuController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function actualizar(ValidacionMenu $request, $id)
     {
-        //
+        Menu::findOrFail($id)->update($request->validated());
+        return redirect()->route('menu')->with('mensaje', 'Menú actualizado correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        Menu::destroy($id);
+        return redirect()->route('menu')->with('mensaje', 'Menú eliminado correctamente');
+    }
+    public function guardarOrden(Request $request) {
+        
+        if($request->ajax()){
+            Menu::guardarOrden($request->menu);
+            return response()->json(['respuesta' => 'ley']);
+        }
+        else {
+            abort(404);
+        }
     }
 }
