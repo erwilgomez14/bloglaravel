@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Backend;
+namespace App\Http\Requests;
 
 use App\Rules\validacionCampoUrl;
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,10 +23,9 @@ class ValidacionMenu extends FormRequest
     public function rules(): array
     {
         return [
-            //
-            'nombre' =>  'required|max:50| unique:menus,nombre',
-            'url' =>  'required|max:100| unique:menus,url', 
-            'icono' =>  'nullable|max:50' 
+            'nombre' => 'required|max:50|unique:menu,nombre',
+            'url' => 'required|max:50' ,
+            'icono' => 'nullable|max:50'
         ];
     }
 }

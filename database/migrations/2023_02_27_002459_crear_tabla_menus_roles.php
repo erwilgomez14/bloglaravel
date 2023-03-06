@@ -8,22 +8,28 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('menus_roles', function (Blueprint $table) {
-            $table->unsignedBigInteger('menus_id');
-            $table->foreign('menus_id', 'fk_menurol_menu')->references('id')->on('menus')->onDelete('cascade')->onUpdate('restrict');
-            $table->unsignedBigInteger('roles_id');
-            $table->foreign('roles_id', 'fk_menurol_rol')->references('id')->on('roles')->onDelete('cascade')->onUpdate('restrict');
+        Schema::create('menu_rol', function (Blueprint $table) {
+            $table->unsignedBigInteger('rol_id');
+            $table->foreign('rol_id', 'fk_menurol_rol')->references('id')->on('rol')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedBigInteger('menu_id');
+            $table->foreign('menu_id', 'fk_menurol_menu')->references('id')->on('menu')->onDelete('cascade')->onUpdate('restrict');
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('menus_roles');
+        Schema::dropIfExists('menu_rol');
     }
 };

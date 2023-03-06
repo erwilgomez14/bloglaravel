@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\ValidacionMenu;
+use App\Http\Requests\ValidacionMenu;
 use App\Models\Backend\Menu;
 
 class MenuController extends Controller
@@ -15,7 +15,8 @@ class MenuController extends Controller
     public function index()
     {
         $menus = Menu::getMenu();
-        return view('theme.back.menu.index', compact('menus'));//
+        return view('theme.back.menu.index', compact('menus'));
+        // dd($menus);
     }
 
     /**
@@ -32,9 +33,10 @@ class MenuController extends Controller
      */
     public function guardar(ValidacionMenu $request)
     {
-        $validado = $request->validated();
-        // dd($validado);
-        Menu::create($validado);
+        // dd($request->all());
+        // $validado = $request->validated();
+        // // dd($validado);
+        Menu::create($request->all());
         return redirect()->route('menu')->with('mensaje', 'Menu creado satisfactoriamente');
     }
 
@@ -75,8 +77,9 @@ class MenuController extends Controller
     public function guardarOrden(Request $request) {
         
         if($request->ajax()){
-            Menu::guardarOrden($request->menu);
-            return response()->json(['respuesta' => 'ley']);
+            $menu = new Menu;
+            $menu->guardarOrden($request->menu);
+            return response()->json(['respuesta' => 'ok']);
         }
         else {
             abort(404);

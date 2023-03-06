@@ -11,13 +11,13 @@
 @section('contenido')
     <div class="row">
         @include('includes.alertas')
-        <div class="col-md-12">
+        <div class="col-md-12"> 
             <div class="card">
-                <div class="card">
+                
                     <div class="card-header">
                         Crear Menus
                     </div>
-                    <form action="{{ route('menu.guardar')}}" id="form-general" class="form-horizontal" method="POST">
+                    <form action="{{route('menu.guardar')}}" id="form-general" class="form-horizontal" method="POST">
                         @csrf
                         <div class="card-body">
                             @include('theme.back.menu.form')
@@ -33,9 +33,6 @@
                             </div>
                         </div>
                     </form>
-                </div>
-
-
             </div>
         </div>
     </div>

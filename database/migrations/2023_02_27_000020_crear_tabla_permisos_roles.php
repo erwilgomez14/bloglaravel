@@ -9,22 +9,25 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('permisos_roles', function (Blueprint $table) {
-
-            $table->unsignedBigInteger('permisos_id');
-            $table->foreign('permisos_id', 'fk_permisorol_permiso')->references('id')->on('permisos')->onDelete('cascade')->onUpdate('restrict');
-            $table->unsignedBigInteger('roles_id');
-            $table->foreign('roles_id', 'fk_permisorol_rol')->references('id')->on('roles')->onDelete('cascade')->onUpdate('restrict');
+        Schema::create('permiso_rol', function (Blueprint $table) {
+            $table->unsignedBigInteger('rol_id');
+            $table->foreign('rol_id', 'fk_permisorol_rol')->references('id')->on('rol')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedBigInteger('permiso_id');
+            $table->foreign('permiso_id', 'fk_permisorol_permiso')->references('id')->on('permiso')->onDelete('restrict')->onUpdate('restrict');
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('permisos_roles');
+        Schema::dropIfExists('permiso_rol');
     }
 };

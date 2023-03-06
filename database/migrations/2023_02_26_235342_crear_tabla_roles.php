@@ -9,21 +9,25 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->id();
+        Schema::create('rol', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('nombre', 50)->unique();
-            $table->string('slug',50)->unique();
+            $table->string('slug', 50);
             $table->timestamps();
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('rol');
     }
 };

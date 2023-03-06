@@ -9,21 +9,25 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('usuarios_roles', function (Blueprint $table) {
-            $table->unsignedBigInteger('usuarios_id');
-            $table->foreign('usuarios_id', 'fk_usuariorol_usuario')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('restrict');
-            $table->unsignedBigInteger('roles_id');
-            $table->foreign('roles_id', 'fk_usuariorol_rol')->references('id')->on('roles')->onDelete('cascade')->onUpdate('restrict');
+        Schema::create('usuario_rol', function (Blueprint $table) {
+            $table->unsignedBigInteger('rol_id');
+            $table->foreign('rol_id', 'fk_usuariorol_rol')->references('id')->on('rol')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedBigInteger('usuario_id');
+            $table->foreign('usuario_id', 'fk_usuariorol_usuario')->references('id')->on('usuario')->onDelete('restrict')->onUpdate('restrict');
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_spanish_ci';
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('usuarios_roles');
+        Schema::dropIfExists('usuario_rol');
     }
 };

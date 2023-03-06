@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var form;
+    // var form;
     $('#nestable').nestable().on('change', function() {
         const data = {
             menu: window.JQuery.stringify($('#nestable').nestable('serialize')),
@@ -16,17 +16,17 @@ $(document).ready(function() {
         });
     });
     
-    $('.boton-eliminar-menu').on('click', function(event){
-        event.preventDefault();
-        form = $(this).parents('form:firts');
-        $('#confirmar-eliminar').modal('show');
-    });
+    // $('.boton-eliminar-menu').on('click', function(event){
+    //     event.preventDefault();
+    //     form = $(this).parents('form:firts');
+    //     $('#confirmar-eliminar').modal('show');
+    // });
 
-    $('.#accion-eliminar').on('click', function(event){
-        event.preventDefault();
-        $('#confirmar-eliminar').modal('hide');
-        form.submit();
-    });
+    // $('.#accion-eliminar').on('click', function(event){
+    //     event.preventDefault();
+    //     $('#confirmar-eliminar').modal('hide');
+    //     form.submit();
+    // });
 
-    $('#nestable2').nestable('expandAll');
+    $('#nestable').nestable('expandAll');
 });

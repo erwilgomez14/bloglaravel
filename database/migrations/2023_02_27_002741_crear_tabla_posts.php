@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('post', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('usuario_id');
-            $table->foreign('usuario_id', 'fk_post_usuario')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('restrict');
+            $table->foreign('usuario_id', 'fk_post_usuario')->references('id')->on('usuario')->onDelete('cascade')->onUpdate('restrict');
             $table->string('titulo', 150);
             $table->string('slug',50)->unique();
             $table->string('descripcion', 255);
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('post');
     }
 };

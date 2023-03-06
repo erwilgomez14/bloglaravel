@@ -22,12 +22,14 @@
       sizes="16x16"
       href="{{asset("assets/back/images/favicon.png")}}"
     />
+    <!-- Dymamic CSS -->
+    @yield('styles')
     <!-- Custom CSS -->
     {{-- <link href="../assets/libs/flot/css/float-chart.css" rel="stylesheet" /> --}}
     <!-- Custom CSS -->
     <link href="{{ asset("assets/back/css/style.min.css") }}" rel="stylesheet" />
-<!-- Dymamic CSS -->
-    @yield('styles')
+
+    
 
     <link href="{{ asset("assets/back/css/blog.css") }}" rel="stylesheet" />
 

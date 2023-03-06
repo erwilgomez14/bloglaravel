@@ -32,7 +32,7 @@ Route::group(['prefix'=>'admin-backend', 'middleware'=>['auth','superadministrad
     Route::get('menu/crear', [MenuController::class, 'crear'])->name('menu.crear');
     Route::get('menu/{id}/editar', [MenuController::class, 'editar'])->name('menu.editar');
     Route::post('menu', [MenuController::class, 'guardar'])->name('menu.guardar');
-    Route::post('menu/guardar-orden', [MenuController::class, 'guardarOrden'])->name('menu.orden');
+    Route::post('menu/guardar-orden', [MenuController::class, 'guardarOrden'])->name('menu.guardarorden');
     Route::put('menu/{id}', [MenuController::class, 'actualizar'])->name('menu.actualizar');
     Route::delete('menu/{id}/eliminar', [MenuController::class, 'eliminar'])->name('menu.eliminar');
 

@@ -10,68 +10,63 @@ class Menu extends Model
 {
     use HasFactory;
 
-    protected $table = "menus";
+    protected $table = "menu";
+    protected $fillable = ['nombre', 'url', 'icono'];
 
-    protected $fillable = [
-        'nombre',
-        'url',
-        'icono',
-    ];
     protected $guarded = ['id'];
 
     // protected $timestamps = false;
 
     public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Rol::class, 'menus_roles', 'menus_id', 'roles_id');
+        return $this->belongsToMany(Rol::class, 'menu_rol', 'menu_id', 'rol_id');
     }
 
-    private function getMenuPadres($front){
-
-        if($front) {
-            return $this->whereHas('roles', function($query) {
-                $query->where('rol_id', session('rol_id'))->orderby('menus_id');
-            })
-            ->orderby('menus_id')
-            ->orderby('orden')
-            ->get()
-            ->toArray();
-        }
-        else {
-            return $this->orderby('menus_id')
-            ->orderby('orden')
-            ->get()
-            ->toArray();
-        }
-    }
-
-    private function getMenuHijos($padres, $line)
+    public function getHijos($padres, $line)
     {
-        $hijos = [];
-        foreach ($padres as $line2) {
-            if ($line['id'] = $line2['menus_id']) {
-                $hijos = array_merge($hijos, [array_merge($line2, ['submenu' => $this->getHijos($padres, $line2)])]);
+        $children = [];
+        foreach ($padres as $line1) {
+            if ($line['id'] == $line1['menu_id']) {
+                $children = array_merge($children, [array_merge($line1, ['submenu' => $this->getHijos($padres, $line1)])]);
             }
         }
-        return $hijos;
+        return $children;
     }
 
-    public static function getMenu($front = false) {
+    public function getPadres($front)
+    {
+        if ($front) {
+            return $this->whereHas('roles', function ($query) {
+                $query->where('rol_id', session()->get('rol_id'))->orderby('menu_id');
+            })->orderby('menu_id')
+                ->orderby('orden')
+                ->get()
+                ->toArray();
+        } else {
+            return $this->orderby('menu_id')
+                ->orderby('orden')
+                ->get()
+                ->toArray();
+        }
+    }
+
+    public static function getMenu($front = false)
+    {
         $menus = new Menu();
-        $padres = $menus->getMenuPadres($front);
+        $padres = $menus->getPadres($front);
         $menuAll = [];
         foreach ($padres as $line) {
-            if($line['menus_id'] != null)
+            if ($line['menu_id'] != 0)
                 break;
-            $item = [array_merge($line, ['submenu'=> $menus->getMenuHijos($padres, $line)])];
+            $item = [array_merge($line, ['submenu' => $menus->getHijos($padres, $line)])];
             $menuAll = array_merge($menuAll, $item);
         }
-        return $menuAll; 
+        return $menuAll;
     }
     public static function guardarOrden($menus) {
         $menus = json_decode($menus);
         foreach ($menus as $var => $menu) {
-            self::where('id', $menu->id)->update(['menus_id' => null , 'orden' => $var + 1]);
+            self::where('id', $menu->id)->update(['menus_id' => 0 , 'orden' => $var + 1]);
             if(!empty($menu->children)) {
                 self::guardarOrdenHijos($menu->children, $menu);
             }

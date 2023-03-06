@@ -13,6 +13,8 @@ use App\Models\Backend\Rol;
 class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
+
+    protected $table = 'usuario';
     protected $guarded = [];
 
     /**
@@ -36,6 +38,6 @@ class Usuario extends Authenticatable
 
     public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Rol::class, 'usuarios_roles', 'usuarios_id', 'roles_id');
+        return $this->belongsToMany(Rol::class, 'usuario_rol', 'usuario_id', 'rol_id');
     }
 }

@@ -9,15 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('menus', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('menus_id')->nullable();
-            $table->foreign('menus_id','fk_menu_menus')->references('id')->on('menus')->onDelete('cascade')->onUpdate('restrict');
+        Schema::create('menu', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedInteger('menu_id')->default(0);
             $table->string('nombre', 50);
-            $table->string('url', 50);
-            $table->unsignedInteger('orden')->default(1);
+            $table->string('url', 100);
+            $table->unsignedInteger('orden')->default(0);
             $table->string('icono', 50)->nullable();
             $table->timestamps();
         });
@@ -25,9 +24,11 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('menu');
     }
 };
